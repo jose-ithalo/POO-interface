@@ -7,38 +7,53 @@ interface ICarrinho {
     quantidade: number
 }
 
-export class Carrinho implements ICarrinho {
-    id: number;
-    descricao: string;
-    categoria: string;
-    valor: number;
-    quantidade: number;
+export class Carrinho {
 
-    public listaCarrinho: Omit<ICarrinho, 'id'>[] = [];
+    public listaCarrinho: ICarrinho[];
 
-    constructor(produto: Omit<ICarrinho, 'id'>) {
 
-        let idProduto: number = 0;
+    constructor() {
 
-        this.id = idProduto += 1;
-        this.descricao = produto.descricao;
-        this.categoria = produto.categoria;
-        this.valor = produto.valor;
-        this.quantidade = produto.quantidade;
-
-        this.listaCarrinho.push(produto)
+        this.listaCarrinho = [];
     }
 
-    adicionar(): void {
-        throw new Error("Method not implemented.");
+    adicionar(produto: ICarrinho): void {
+
+        this.listaCarrinho.push(produto);
+
     }
-    remover(): void {
-        throw new Error("Method not implemented.");
+    remover(idProduto: number): string {
+
+        const indeciProduto: number = this.listaCarrinho.findIndex(function (produto) {
+            return produto.id === idProduto;
+        });
+
+        if (indeciProduto < 0) {
+            return 'Produto não encontrado';
+        }
+
+        this.listaCarrinho.splice(indeciProduto, 1);
+
+        return 'Produto removido com sucesso!'
     }
-    alterarQuantidade(): void {
-        throw new Error("Method not implemented.");
+
+    alterarQuantidade(idProduto: number, quant: number): string {
+
+        const produtoSelecionado = this.listaCarrinho.find(function (produto) {
+            return produto.id === idProduto;
+        });
+
+        if (!produtoSelecionado) {
+            return 'Produto não encontrado';
+        }
+
+        produtoSelecionado.quantidade = quant;
+
+        return `Quantidade de ${produtoSelecionado.descricao} alterada para ${quant}.`
+
     }
-    imprimirResumo() {
+
+    imprimirResumo(): ICarrinho[] {
         return this.listaCarrinho
     }
 
