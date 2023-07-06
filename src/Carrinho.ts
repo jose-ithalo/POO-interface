@@ -1,5 +1,4 @@
 interface ICarrinho {
-
     id: number,
     descricao: string,
     categoria: string,
@@ -11,7 +10,6 @@ export class Carrinho {
 
     public listaCarrinho: ICarrinho[];
 
-
     constructor() {
 
         this.listaCarrinho = [];
@@ -20,8 +18,8 @@ export class Carrinho {
     adicionar(produto: ICarrinho): void {
 
         this.listaCarrinho.push(produto);
-
     }
+
     remover(idProduto: number): string {
 
         const indeciProduto: number = this.listaCarrinho.findIndex(function (produto) {
