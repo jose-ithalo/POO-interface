@@ -8,7 +8,7 @@ export interface IProduto {
 
 export class Carrinho {
 
-    private listaCarrinho: IProduto[];
+    protected listaCarrinho: IProduto[];
 
     constructor() {
 
