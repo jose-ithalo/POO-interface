@@ -1,4 +1,4 @@
-interface ICarrinho {
+export interface IProduto {
     id: number,
     descricao: string,
     categoria: string,
@@ -8,14 +8,14 @@ interface ICarrinho {
 
 export class Carrinho {
 
-    public listaCarrinho: ICarrinho[];
+    private listaCarrinho: IProduto[];
 
     constructor() {
 
         this.listaCarrinho = [];
     }
 
-    adicionar(produto: ICarrinho): void {
+    adicionar(produto: IProduto): void {
 
         this.listaCarrinho.push(produto);
     }
@@ -51,7 +51,7 @@ export class Carrinho {
 
     }
 
-    imprimirResumo(): ICarrinho[] {
+    imprimirResumo(): IProduto[] {
         return this.listaCarrinho
     }
 
