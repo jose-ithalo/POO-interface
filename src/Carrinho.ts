@@ -6,7 +6,7 @@ export interface IProduto {
     quantidade: number
 }
 
-export class Carrinho {
+export abstract class Carrinho {
 
     protected listaCarrinho: IProduto[];
 
